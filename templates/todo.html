@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todoapp</title>
+</head>
+<body>
+    <main>
+        <!-- 入力フォーム -->
+        <form action="/todo" method="POST" id="form">
+            <input type="text" name="content" required>
+            <input type="submit" value="送信">
+        </form>
+        <!-- 入力結果を出力 -->
+        {% if task %}
+            <p id="output">{{ task }}</p>
+        {% endif %}
+    </main>
+</body>
+</html>
