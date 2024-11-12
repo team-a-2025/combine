@@ -3,19 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todoapp</title>
+  <title>Todoアプリ</title>
+  <!-- CSSファイルのリンクを追加 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/enter.css') }}">
 </head>
 <body>
-    <main>
-        <!-- 入力フォーム -->
-        <form action="/todo" method="POST" id="form">
-            <input type="text" name="content" required>
-            <input type="submit" value="送信">
-        </form>
-        <!-- 入力結果を出力 -->
-        {% if task %}
-            <p id="output">{{ task }}</p>
-        {% endif %}
-    </main>
+  <main>
+    <h2>Todoリスト</h2>
+    <form action="{{ url_for('todo') }}" method="POST">
+        <div class="form-group">
+            <label for="title">タイトル</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">詳細</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <button type="submit">追加</button>
+    </form>
+    {% if title and description %}
+      <h2>追加されたタスク</h2>
+      <p>タイトル: {{ title }}</p>
+      <p>詳細: {{ description }}</p>
+    {% endif %}
+
+    <!-- ログアウトリンク -->
+    <a href="{{ url_for('logout') }}">ログアウト</a>
+  </main>
 </body>
 </html>
